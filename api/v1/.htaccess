@@ -1,0 +1,22 @@
+# Attiva il modulo di riscrittura delle URL
+RewriteEngine On
+
+# Controlla se il percorso richiesto non corrisponde a un file esistente (-f)
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Controlla se il percorso richiesto non corrisponde a una directory esistente (-d)
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Riscrivi l'URL per le richieste che corrispondono a 'api/v1/prodotti/(.*)'
+# Inoltra la richiesta a 'api/v1/prodotti.php' con il parametro 'request' contenente il valore catturato
+# QSA: Conserva le query string originali durante la riscrittura
+# NC: Ignora il case (maiuscole/minuscole) durante la corrispondenza
+# L: Interrompi il processo di riscrittura dopo questa regola
+RewriteRule api/v1/prodotti/(.*)$ api/v1/prodotti.php?request=$1 [QSA,NC,L]
+
+# Riscrivi l'URL per le richieste che corrispondono a 'api/v1/categorie/(.*)'
+# Inoltra la richiesta a 'api/v1/categorie.php' con il parametro 'request' contenente il valore catturato
+# QSA: Conserva le query string originali durante la riscrittura
+# NC: Ignora il case (maiuscole/minuscole) durante la corrispondenza
+# L: Interrompi il processo di riscrittura dopo questa regola
+RewriteRule api/v1/categorie/(.*)$ api/v1/categorie.php?request=$1 [QSA,NC,L]
