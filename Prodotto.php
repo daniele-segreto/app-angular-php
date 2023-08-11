@@ -2,7 +2,6 @@
 
 class Prodotto {
     // Definizione delle proprietà dell'oggetto Prodotto
-    
     private $conn; // Oggetto di connessione al database
     private $nome_tabella = "prodotti"; // Nome della tabella nel database
     
